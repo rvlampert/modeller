@@ -1,0 +1,11 @@
+notebook
+pandas
+selenium
+requests
+beautifulsoup4
+coreapi-cli
+pandarallel
+ipywidgets
+ratelimit
+tqdm
+biopython

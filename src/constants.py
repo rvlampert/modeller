@@ -1,0 +1,8 @@
+DATA_PATH = "data/"
+ASSETS_PATH = f"{DATA_PATH}assets/"
+FASTA_PATH = f"{ASSETS_PATH}fasta/"
+PDB_PATH = f"{ASSETS_PATH}pdbs/"
+BLAST_PATH = f"{ASSETS_PATH}blast/"
+PIR_PATH = f"{ASSETS_PATH}pir/"
+ALI_PATH = f"{ASSETS_PATH}ali/"
+FASTA_FILE = f"{DATA_PATH}fastas.csv"  

@@ -1,0 +1,40 @@
+# Ignore compiled Python files
+*.pyc
+*.pyo
+__pycache__/
+
+# Ignore virtual environment directories
+venv/
+.env/
+.venv/
+
+# Ignore Docker-related files
+docker-compose.override.yml
+*.log
+*.tmp
+
+# Ignore data and results directories
+data/results/
+
+
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Ignore IDE-specific files
+.vscode/
+.idea/
+
+# Ignore build artifacts
+build/
+dist/
+*.egg-info/
+
+# Ignore temporary files
+*.swp
+*.swo
+*.bak
+*.tmp
+
+# Ignore Makefile
+Makefile
