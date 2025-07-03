@@ -16,7 +16,6 @@ docker-compose.override.yml
 # Ignore data and results directories
 data/results/
 
-
 # Ignore system files
 .DS_Store
 Thumbs.db

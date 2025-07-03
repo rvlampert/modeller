@@ -39,7 +39,7 @@ ddn;ddn_Leu49Pro;MPKSPPRFLNSPLSDFFIKWMSRINTWMYRRNDGEGLGGTFQKIPVALPTTTGRKTGQPRVNP
 
 #### Notes:
 1. The ```modeller``` column is optional and will be automatically updated with ```OK``` after successful modeling.
-2. If you need to add new instances to an existing dataset, simply append new rows to ```fasta.csv```. The script will check the ```PDB``` folder and update the ```modeller``` column for existing files.
+2. If you need to add new instances to an existing dataset, simply append new rows to ```fasta.csv``` and move old results to ```data/assets/pdbs``` folder. The script will check and update the ```modeller``` column for existing files.
 
 ---
 

@@ -130,9 +130,8 @@ def get_pdbs():
         df = update_column_based_on_files(df, MODEL)
         todo_df = df[df[MODEL] != 'ok']
         if todo_df.empty:
-            return "No models to be created."
-        with tqdm(total=len(todo_df), desc="Modeling Progress") as pbar:
-            todo_df[MODEL] = todo_df.parallel_apply(process_row, axis=1)
+            return "No models to be created." 
+        todo_df[MODEL] = todo_df.parallel_apply(process_row, axis=1)
         update_csv_file(df, MODEL)
     except Exception as e:
         return f"Error in get_pdbs: {str(e)}"
