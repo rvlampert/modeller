@@ -3,15 +3,13 @@ import re
 import requests
 import pandas as pd
 import numpy as np
+from tqdm import tqdm  
 from Bio.Blast import NCBIWWW
-from pandarallel import pandarallel
-from tqdm import tqdm
 from modeller import *  
 from modeller.automodel import *  
 from src.helper import delete_other_files, move_pdb_file, update_column_based_on_files, update_csv_file, write_file
 from src.constants import FASTA_FILE, PDB_PATH, BLAST_PATH, PIR_PATH
 
-pandarallel.initialize(progress_bar=True)
 
 MODEL = 'modeller'
 env = Environ()
@@ -131,7 +129,9 @@ def get_pdbs():
         todo_df = df[df[MODEL] != 'ok']
         if todo_df.empty:
             return "No models to be created." 
-        todo_df[MODEL] = todo_df.parallel_apply(process_row, axis=1)
+        for index, row in tqdm(todo_df.iterrows(), total=todo_df.shape[0], desc="Processing rows"):
+            result = process_row(row)
+            df.at[index, MODEL] = result
         update_csv_file(df, MODEL)
     except Exception as e:
         return f"Error in get_pdbs: {str(e)}"
