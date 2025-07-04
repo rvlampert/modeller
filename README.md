@@ -4,10 +4,18 @@
 
 ## 1. Overview
 
+### 1.1 Idea
+
 This project is designed for **modeling protein structures** by generating **3D PDB files** from **FASTA sequences** using the **Modeller** tool. The workflow involves:
 
 1. Using **BLAST** to search for protein templates.
 2. Employing **Modeller** to construct 3D models based on these templates.
+
+
+
+## 1.2 Diagram
+
+![Protein Modeling Workflow](image.png)
 
 ---
 
