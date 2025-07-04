@@ -19,7 +19,7 @@ RUN pip3 install --no-cache-dir --break-system-packages -r /tmp/requirements.txt
     rm /tmp/requirements.txt
 
 COPY src /app/src
-COPY data /app/data
+COPY fastas.csv /app/fastas.csv
 COPY main.py /app/main.py
 
 WORKDIR /app

@@ -20,27 +20,21 @@ This project is designed for **modeling protein structures** by generating **3D 
 
 ### 2.2 Data Preparation
 
-To prepare the data for modeling, create a ```fasta.csv``` file in the ```data``` directory with the following structure:
+To prepare the data for modeling, create a ```fasta.csv``` file in the ```root``` directory with the following structure:
 
 | Column      | Description                                                                 |
 |-------------|-----------------------------------------------------------------------------|
 | ```gene```      | The gene name or identifier.                                               |
 | ```variant```   | The variant type (e.g., wild or mutation).                                 |
 | ```fasta```     | The FASTA sequence of the protein.                                         |
-| ```modeller```  | *(Optional)* This column will be filled with ```OK``` after successful modeling.|
 
 #### Example:
 ```csv
-gene;variant;fasta;modeller
+gene;variant;fasta
 atpE;wild;MDPTIAAGALIGGGLIMAGGAIGAGIGDGVAGNALISGVARQPEAQGRLFTPFFITVGLVEAAYFINLAFMALFVFATPVK;
 Rv0678;wild;VSVNDGVDQMGAEPDIMEFVEQMGGYFESRSLTRLAGRLLGWLLVCDPERQSSEELATALAASSGGISTNARMLIQFGFIERLAVAGDRRTYFRLRPNAFAAGERERIRAMAELQDLADVGLRALGDAPPQRSRRLREMRDLLAYMENVVSDALGRYSQRTGEDD;
 ddn;ddn_Leu49Pro;MPKSPPRFLNSPLSDFFIKWMSRINTWMYRRNDGEGLGGTFQKIPVALPTTTGRKTGQPRVNPLYFLRDGGRVIVAASKGGAEKNPMWYLNLKANPKVQVQIKKEVLDLTARDATDEERAEYWPQLVTMYPSYQDYQSWTDRTIPIVVCEP;
 ```
-
-#### Notes:
-1. The ```modeller``` column is optional and will be automatically updated with ```OK``` after successful modeling.
-2. If you need to add new instances to an existing dataset, simply append new rows to ```fasta.csv``` and move old results to ```data/assets/pdbs``` folder. The script will check and update the ```modeller``` column for existing files.
-
 ---
 
 ### 2.3 Installation
@@ -60,7 +54,7 @@ Replace <```Modeller key```> with your Modeller license key.
 Run the modeling script using Docker:
 
 ```sh
-docker run --name modeller modeller:1.0.0
+docker run --name modeller -v modeller:/app modeller:1.0.0
 ```
 
 ---
@@ -70,9 +64,25 @@ docker run --name modeller modeller:1.0.0
 After running the modeling script, the generated **PDB files** will be available in the ```data/results``` directory. To download them, use the following command:
 
 ```sh
-docker cp modeller:/app/data/assets/pdbs ./data/results
+docker cp modeller:/app/assets/pdbs results
 ```
 
+## 5. Cleaning Up
+To clean up the Docker container and remove it after use, run:
+
+```sh
+docker rm -f modeller
+docker volume rm modeller
+```
+
+## 6 Complete script
+```sh
+docker build --no-cache --build-arg KEY_MODELLER=<Modeller key> -t modeller:1.0.0 .
+docker run --name modeller -v modeller:/app modeller:1.0.0
+docker cp modeller:/app/assets/pdbs results
+docker rm -f modeller
+docker volume rm modeller
+```
 ---
 
 ## 5. Key Concepts

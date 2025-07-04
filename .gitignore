@@ -14,7 +14,7 @@ docker-compose.override.yml
 *.tmp
 
 # Ignore data and results directories
-data/results/
+results/
 
 # Ignore system files
 .DS_Store
